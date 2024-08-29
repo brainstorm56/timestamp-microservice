@@ -22,11 +22,11 @@ app.get("/", function (req, res) {
 app.get("/api/hello", function (req, res) {
   res.json({greeting: 'hello API'});
 });
-
 app.get("/api/:date",function(req,res){
   const date_string = req.params.date;
+  const isNumeric = /^\d+$/.test(date_string)
   let date;
-  if(!date_string.includes('-')){
+  if(isNumeric){
     date = new Date(Number.parseInt(date_string));
   }
   else{
